@@ -90,18 +90,4 @@ public class RSA {
         byte[] plainText = cipher.doFinal(Base64.getDecoder().decode(cipherText));
         return new String(plainText);
     }
-
-    public static String encryptPassword(String plainText, Key key)
-            throws NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, NoSuchPaddingException {
-        Cipher cipher = Cipher.getInstance("RSA");
-        cipher.init(Cipher.ENCRYPT_MODE, key);
-        return Base64.getEncoder().encodeToString(cipher.doFinal(plainText.getBytes()));
-    }
-
-    public static String decryptPassword(String cipherText, Key key)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
-        Cipher cipher = Cipher.getInstance("RSA");
-        cipher.init(Cipher.DECRYPT_MODE, key);
-        return new String(cipher.doFinal(Base64.getDecoder().decode(cipherText)));
-    }
 }
